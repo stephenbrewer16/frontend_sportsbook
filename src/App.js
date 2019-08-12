@@ -7,13 +7,17 @@ import  SignupForm  from './components/SignupForm';
 import  LoginForm  from './components/LoginForm';
 import Nav from './containers/Nav'
 import WagerForm from './components/WagerForm'
+import Wallet from './components/Wallet';
+import Profile from './components/Profile';
+import AddFunds from './components/AddFunds';
 
 export default class App extends Component {
   state = {
     currentUser: null,
     wagers: [],
     matchups:[],
-    currentMatchupId: null
+    currentMatchupId: null,
+    wallet: 0
   }
 
   componentDidMount = () => {
@@ -75,9 +79,14 @@ export default class App extends Component {
       this.props.history.push("/home")
     })
   }
-  selectMatchup = (matchup) =>{
+  selectMatchup = (matchup) => {
     this.setState({
       currentMatchupId: matchup
+    })
+  }
+  addFunds = (money) => {
+    this.setState({
+      wallet: parseFloat(this.state.wallet) + parseFloat(money)
     })
   }
   render() {
@@ -92,6 +101,9 @@ export default class App extends Component {
           ?
           <div>
             <Nav logout={this.logout} currentUser={this.state.currentUser}/>
+            <Route path='/addfunds' render={(routerProps) => <AddFunds addFunds={this.addFunds} currentUser={this.state.currentUser}{...routerProps}/>}/>
+            <Route path='/wallet' render={(routerProps) => <Wallet wallet={this.state.wallet} {...routerProps} currentUser={this.state.currentUser}/>}/>
+            <Route path='/users/:id' render={(routerProps)=> <Profile {...routerProps} currentUser={this.state.currentUser}/>}/>
             <Route path='/wagerform' render={(routerProps) => <WagerForm currentMatchupId={this.state.currentMatchupId} addWager={this.addWager} currentUser={this.state.currentUser} matchups={this.state.matchups} setUser={this.setUser}{...routerProps} />} />
             <Route path='/home' render={(routerProps) => <MainContainer selectMatchup={this.selectMatchup} matchups={this.state.matchups}setUser={this.setUser}  currentUser={this.state.currentUser}{...routerProps} />} />
           </div>
