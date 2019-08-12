@@ -17,7 +17,7 @@ export default class App extends Component {
     wagers: [],
     matchups:[],
     currentMatchupId: null,
-    wallet: 0
+    wallet: ''
   }
 
   componentDidMount = () => {
@@ -34,7 +34,10 @@ export default class App extends Component {
             alert(response.errors)
           } else {
             this.setState({
-              currentUser: response
+              currentUser: response,
+            })
+            this.setState({
+              wallet: this.state.currentUser.wallet
             })
           }
         })
@@ -84,9 +87,11 @@ export default class App extends Component {
       currentMatchupId: matchup
     })
   }
-  addFunds = (money) => {
+  addFunds = (user) => {
+    console.log("user", user)
     this.setState({
-      wallet: parseFloat(this.state.wallet) + parseFloat(money)
+      wallet: parseFloat(user.wallet),
+      currentUser: user
     })
   }
   render() {
@@ -104,7 +109,7 @@ export default class App extends Component {
             <Route path='/addfunds' render={(routerProps) => <AddFunds addFunds={this.addFunds} currentUser={this.state.currentUser}{...routerProps}/>}/>
             <Route path='/wallet' render={(routerProps) => <Wallet wallet={this.state.wallet} {...routerProps} currentUser={this.state.currentUser}/>}/>
             <Route path='/users/:id' render={(routerProps)=> <Profile {...routerProps} currentUser={this.state.currentUser}/>}/>
-            <Route path='/wagerform' render={(routerProps) => <WagerForm currentMatchupId={this.state.currentMatchupId} addWager={this.addWager} currentUser={this.state.currentUser} matchups={this.state.matchups} setUser={this.setUser}{...routerProps} />} />
+            <Route path='/wagerform' render={(routerProps) => <WagerForm wallet={this.state.wallet} currentMatchupId={this.state.currentMatchupId} addWager={this.addWager} currentUser={this.state.currentUser} matchups={this.state.matchups} setUser={this.setUser}{...routerProps} />} />
             <Route path='/home' render={(routerProps) => <MainContainer selectMatchup={this.selectMatchup} matchups={this.state.matchups}setUser={this.setUser}  currentUser={this.state.currentUser}{...routerProps} />} />
           </div>
           :

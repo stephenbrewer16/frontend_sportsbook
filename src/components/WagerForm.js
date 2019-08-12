@@ -39,6 +39,7 @@ export default class WagerForm extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
+        if (this.props.wallet > this.state.wager_amount){ 
         fetch('http://localhost:3000/wagers', {
             method: 'POST',
             headers: {
@@ -52,6 +53,9 @@ export default class WagerForm extends Component {
                     this.props.addWager(response)
                 }
             )
+        }else{
+            alert("You do not have enough funds to place this wager.  Please add more to your wallet")
+        }
     }
     render() {
         return (

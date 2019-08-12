@@ -2,11 +2,20 @@ import React, { Component } from 'react'
 
 export default class AddFunds extends Component {
     state = {
-        wallet: 0
+        wallet: ''
     }
     handleSubmit = (e) =>{
         e.preventDefault()
-        this.props.addFunds(this.state.wallet)
+        fetch(`http://localhost:3000/users/${this.props.currentUser.id}`, {
+            method: 'PATCH',
+            headers: {
+                "Content-Type": 'application/json',
+                "Accept": 'application/json'
+            },
+            body: JSON.stringify({wallet: parseFloat(this.state.wallet)})
+        })
+        .then(resp => resp.json())
+        .then(response => this.props.addFunds(response))
     }
     handleChange = (e) => {
         this.setState({
