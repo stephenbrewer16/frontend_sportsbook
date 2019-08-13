@@ -53,6 +53,16 @@ export default class WagerForm extends Component {
                     this.props.addWager(response)
                 }
             )
+            fetch(`http://localhost:3000/users/${this.props.currentUser.id}/bet`, {
+                method: 'PATCH',
+                headers: {
+                    "Content-Type": 'application/json',
+                    "Accept": 'application/json'
+                },
+                body: JSON.stringify({ bet: parseFloat(this.state.wager_amount) })
+            })
+                .then(resp => resp.json())
+                .then(response => this.props.subtractFunds(response))
         }else{
             alert("You do not have enough funds to place this wager.  Please add more to your wallet")
         }
