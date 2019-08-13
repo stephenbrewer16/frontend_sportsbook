@@ -7,7 +7,7 @@ export default class Nav extends Component {
             <div id="nav">
                 <ul>
                     <Link to='/home'><li>Home</li></Link>
-                    <Link to='/wallet'><li>Wallet</li></Link>
+                    <Link to='/wallet'><li>Current Balance: ${this.props.currentUser.wallet}.00</li></Link>
                     <Link to='/active-wager'><li>Active Wager</li></Link>
                     <Link to='/users/:id'><li>Profile</li></Link>
                 </ul>

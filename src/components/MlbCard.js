@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom'
 export default class MlbCard extends Component {
     render() {
         return (
-            <div>
+            <div className="matchup_card">
                 <table>
                     <tr>
-                        <th>Team</th>
+                        <th className="team_column">Team</th>
                         <th>Spread</th>
                         <th>Points Spread Odds</th>
                         <th>Game Total Over/Under Runs</th>
@@ -30,7 +30,7 @@ export default class MlbCard extends Component {
                             <td>{this.props.matchup.under_odds}</td>
                         </tr>
                 </table>
-                <Link to="/wagerform"><button className='btn' onClick={()=> this.props.selectMatchup(this.props.matchup)}>Place Bet</button></Link>
+                <Link to="/wagerform"><button className='btn_bet' onClick={()=> this.props.selectMatchup(this.props.matchup)}>Place Bet</button></Link>
             </div>
         )
     }

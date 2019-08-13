@@ -9,12 +9,14 @@ export default class MlbContainer extends Component {
     // }
     renderBaseball = () => {
         return this.props.matchups.map(matchup => {
-            return <MlbCard key={matchup.id} matchup={matchup} selectMatchup={this.props.selectMatchup} />
+            if (matchup.sport === "Baseball"){
+                return <MlbCard key={matchup.id} matchup={matchup} selectMatchup={this.props.selectMatchup} />
+            }
         })
     }
     render() {
         return (
-            <div>
+            <div className="matchup_container">
                 {this.renderBaseball()}
             </div>
         )

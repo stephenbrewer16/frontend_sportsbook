@@ -111,7 +111,7 @@ export default class App extends Component {
           {this.state.currentUser
           ?
           <div>
-            <Nav logout={this.logout} currentUser={this.state.currentUser}/>
+            <Nav wallet={this.state.wallet} logout={this.logout} currentUser={this.state.currentUser}/>
             <Route path='/addfunds' render={(routerProps) => <AddFunds addFunds={this.addFunds} currentUser={this.state.currentUser}{...routerProps}/>}/>
             <Route path='/wallet' render={(routerProps) => <Wallet wallet={this.state.wallet} {...routerProps} currentUser={this.state.currentUser}/>}/>
             <Route path='/users/:id' render={(routerProps)=> <Profile {...routerProps} currentUser={this.state.currentUser}/>}/>
