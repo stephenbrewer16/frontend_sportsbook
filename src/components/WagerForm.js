@@ -94,14 +94,14 @@ export default class WagerForm extends Component {
                         <th>Game Total Odds</th>
                     </tr>
                     <tr>
-                        <td>{this.props.currentMatchupId.away_team}</td>
+                        <td>Away: {this.props.currentMatchupId.away_team}</td>
                         <td>{this.props.currentMatchupId.away_points_spread}</td>
                         <td>{this.props.currentMatchupId.away_spread_odds}</td>
                         <td>{this.props.currentMatchupId.over}</td>
                         <td>{this.props.currentMatchupId.over_odds}</td>
                     </tr>
                     <tr>
-                        <td>{this.props.currentMatchupId.home_team}</td>
+                        <td>Home: {this.props.currentMatchupId.home_team}</td>
                         <td>{this.props.currentMatchupId.home_points_spread}</td>
                         <td>{this.props.currentMatchupId.home_spread_odds}</td>
                         <td>{this.props.currentMatchupId.under}</td>
