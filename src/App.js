@@ -92,6 +92,8 @@ export default class App extends Component {
     this.setState({
       wallet: parseFloat(user.wallet),
       currentUser: user
+    }, () => {
+        this.props.history.push("/wallet")
     })
   }
   subtractFunds = (user) => {
@@ -116,7 +118,7 @@ export default class App extends Component {
             <Route path='/wallet' render={(routerProps) => <Wallet wallet={this.state.wallet} {...routerProps} currentUser={this.state.currentUser}/>}/>
             <Route path='/users/:id' render={(routerProps)=> <Profile {...routerProps} currentUser={this.state.currentUser}/>}/>
             <Route path='/wagerform' render={(routerProps) => <WagerForm subtractFunds={this.subtractFunds} wallet={this.state.wallet} currentMatchupId={this.state.currentMatchupId} addWager={this.addWager} currentUser={this.state.currentUser} matchups={this.state.matchups} setUser={this.setUser}{...routerProps} />} />
-            <Route path='/home' render={(routerProps) => <MainContainer selectMatchup={this.selectMatchup} matchups={this.state.matchups}setUser={this.setUser}  currentUser={this.state.currentUser}{...routerProps} />} />
+            <Route path='/home' render={(routerProps) => <MainContainer wallet={this.state.wallet} selectMatchup={this.selectMatchup} matchups={this.state.matchups}setUser={this.setUser}  currentUser={this.state.currentUser}{...routerProps} />} />
           </div>
           :
           null

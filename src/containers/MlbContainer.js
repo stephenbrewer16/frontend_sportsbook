@@ -10,7 +10,7 @@ export default class MlbContainer extends Component {
     renderBaseball = () => {
         return this.props.matchups.map(matchup => {
             if (matchup.sport === "Baseball"){
-                return <MlbCard key={matchup.id} matchup={matchup} selectMatchup={this.props.selectMatchup} />
+                return <MlbCard wallet={this.props.wallet} key={matchup.id} matchup={matchup} selectMatchup={this.props.selectMatchup} />
             }
         })
     }

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 
 export default class MlbCard extends Component {
     render() {
+    console.log(this.props.wallet)
         return (
             <div className="matchup_card">
                 <table>
@@ -30,7 +31,7 @@ export default class MlbCard extends Component {
                             <td>{this.props.matchup.under_odds}</td>
                         </tr>
                 </table>
-                <Link to="/wagerform"><button className='btn_bet' onClick={()=> this.props.selectMatchup(this.props.matchup)}>Place Bet</button></Link>
+                <Link to="/wagerform"><button className='btn_bet' onClick={() => this.props.selectMatchup(this.props.matchup) }>Place Bet</button></Link>
             </div>
         )
     }

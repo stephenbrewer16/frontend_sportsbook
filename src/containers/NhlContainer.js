@@ -5,7 +5,7 @@ export default class NhlContainer extends Component {
     renderHockey = () => {
         return this.props.matchups.map(matchup => {
             if (matchup.sport === "Hockey") {
-                return <MlbCard key={matchup.id} matchup={matchup} selectMatchup={this.props.selectMatchup} />
+                return <MlbCard wallet={this.props.wallet} key={matchup.id} matchup={matchup} selectMatchup={this.props.selectMatchup} />
             }
         })
     }
