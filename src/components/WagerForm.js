@@ -6,6 +6,7 @@ export default class WagerForm extends Component {
         selected_wager: null,
         odds: null,
         wager_amount: null,
+        status: null,
         user_id: ''
     }
 
@@ -25,14 +26,31 @@ export default class WagerForm extends Component {
                     ? parseFloat(`${this.props.currentMatchupId.under_odds}`)
                     : ':(',
                 team: parseFloat(`${this.state.selected_wager}`) === this.props.currentMatchupId.away_points_spread
-                    ? this.props.currentMatchupId.away_team
+                    ? this.props.currentMatchupId.away_team_name
                     : parseFloat(`${this.state.selected_wager}`) === this.props.currentMatchupId.home_points_spread
-                    ? this.props.currentMatchupId.home_team
+                    ? this.props.currentMatchupId.home_team_name
                     : parseFloat(`${this.state.selected_wager}`) === this.props.currentMatchupId.over
                     ? "Game Total Over"
                     : parseFloat(`${this.state.selected_wager}`) === this.props.currentMatchupId.under
                     ? "Game Total Under"
-                    : ':('
+                    : ':(',
+                status: parseFloat(`${this.state.selected_wager}`) === this.props.currentMatchupId.away_points_spread 
+                    && this.props.currentMatchupId.away_points_spread < 0
+                    && (this.props.currentMatchupId.away_score - this.props.currentMatchupId.home_score) > (this.props.currentMatchupId.away_points_spread * -1)
+                    ? "Winner"
+                    : parseFloat(`${this.state.selected_wager}`) === this.props.currentMatchupId.away_points_spread 
+                    && this.props.currentMatchupId.away_points_spread > 0
+                    && (this.props.currentMatchupId.home_score - this.props.currentMatchupId.away_score) < (this.props.currentMatchupId.away_points_spread * -1)
+                    ? "Winner"
+                    : parseFloat(`${this.state.selected_wager}`) === this.props.currentMatchupId.home_points_spread 
+                    && this.props.currentMatchupId.home_points_spread < 0
+                    && (this.props.currentMatchupId.home_score - this.props.currentMatchupId.away_score) > (this.props.currentMatchupId.home_points_spread * -1)
+                    ? "Winner"
+                    : parseFloat(`${this.state.selected_wager}`) === this.props.currentMatchupId.away_points_spread 
+                    && this.props.currentMatchupId.away_points_spread > 0
+                    && (this.props.currentMatchupId.away_score - this.props.currentMatchupId.home_score) < (this.props.currentMatchupId.home_points_spread * -1)
+                    ? "Winner"
+                    : 'Loser'
             })
         })
     }
@@ -46,7 +64,7 @@ export default class WagerForm extends Component {
                 "Content-Type": 'application/json',
                 "Accept": 'application/json'
             },
-            body: JSON.stringify({ team: this.state.team, selected_wager: this.state.selected_wager, odds: this.state.odds, wager_amount: this.state.wager_amount, matchup_id: this.props.currentMatchupId.id, user_id: this.props.currentUser.id })
+            body: JSON.stringify({ team: this.state.team, selected_wager: this.state.selected_wager, odds: this.state.odds, wager_amount: this.state.wager_amount, status: this.state.status, matchup_id: this.props.currentMatchupId.id, user_id: this.props.currentUser.id })
         })
             .then(resp => resp.json())
             .then(response => {
@@ -66,10 +84,11 @@ export default class WagerForm extends Component {
         }else{
             alert("You do not have enough funds to place this wager.  Please add more to your wallet")
         }
+
     }
     render() {
         return (
-            <div>
+            <div className="wager-form-container">
                 <form className="wager-form" onSubmit={this.handleSubmit}>
                     <p>Team: {this.state.team}</p>
                     <label>
@@ -94,14 +113,14 @@ export default class WagerForm extends Component {
                         <th>Game Total Odds</th>
                     </tr>
                     <tr>
-                        <td>Away: {this.props.currentMatchupId.away_team}</td>
+                        <td>Away: {this.props.currentMatchupId.away_team_name}</td>
                         <td>{this.props.currentMatchupId.away_points_spread}</td>
                         <td>{this.props.currentMatchupId.away_spread_odds}</td>
                         <td>{this.props.currentMatchupId.over}</td>
                         <td>{this.props.currentMatchupId.over_odds}</td>
                     </tr>
                     <tr>
-                        <td>Home: {this.props.currentMatchupId.home_team}</td>
+                        <td>Home: {this.props.currentMatchupId.home_team_name}</td>
                         <td>{this.props.currentMatchupId.home_points_spread}</td>
                         <td>{this.props.currentMatchupId.home_spread_odds}</td>
                         <td>{this.props.currentMatchupId.under}</td>

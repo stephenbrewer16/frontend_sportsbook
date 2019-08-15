@@ -42,16 +42,16 @@ export default class App extends Component {
           }
         })
     }
+    // fetch("https://cors-anywhere.herokuapp.com/https://api.sportradar.us/mlb/trial/v6.5/en/games/2019/08/9/schedule.json?api_key=3yezgnsnryvgvepu2m9pbgvb")
+    // .then(resp => resp.json())
+    // .then(baseball => this.setState({
+    //   matchups: [...this.state.matchups, baseball.games]
+    // }))
     fetch("http://localhost:3000/matchups")
     .then(resp => resp.json())
-    .then(baseball => this.setState({
-      matchups: baseball
+    .then(matchup => this.setState({
+      matchups: matchup
     }))
-    // fetch("https://cors-anywhere.herokuapp.com/https://api.sportradar.us/mlb/trial/v6.5/en/games/2019/08/9/schedule.json?api_key=3yezgnsnryvgvepu2m9pbgvb")
-    //   .then(resp => resp.json())
-    //   .then(baseball => this.setState({
-    //     matchups: baseball.games
-    //   }))
   }
 
 
@@ -107,21 +107,22 @@ export default class App extends Component {
     return (
       <div>
         <Switch>
-          <Route path='/signup' render={(routerProps) => <SignupForm setUser={this.setUser}{...routerProps} />} />
-          <Route path='/login' render={(routerProps) => <LoginForm setUser={this.setUser}{...routerProps} />} />
-          <Route path='/welcome' render={(routerProps) => <WelcomeContainer setUser= {this.setUser} currentUser={this.state.currentUser}{...routerProps}/>}/>
           {this.state.currentUser
           ?
           <div>
             <Nav wallet={this.state.wallet} logout={this.logout} currentUser={this.state.currentUser}/>
             <Route path='/addfunds' render={(routerProps) => <AddFunds addFunds={this.addFunds} currentUser={this.state.currentUser}{...routerProps}/>}/>
             <Route path='/wallet' render={(routerProps) => <Wallet wallet={this.state.wallet} {...routerProps} currentUser={this.state.currentUser}/>}/>
-            <Route path='/users/:id' render={(routerProps)=> <Profile {...routerProps} currentUser={this.state.currentUser}/>}/>
+            <Route path='/profile' render={(routerProps)=> <Profile addFunds={this.addFunds} {...routerProps} matchups={this.state.matchups} wallet={this.state.wallet} currentUser={this.state.currentUser}/>}/>
             <Route path='/wagerform' render={(routerProps) => <WagerForm subtractFunds={this.subtractFunds} wallet={this.state.wallet} currentMatchupId={this.state.currentMatchupId} addWager={this.addWager} currentUser={this.state.currentUser} matchups={this.state.matchups} setUser={this.setUser}{...routerProps} />} />
             <Route path='/home' render={(routerProps) => <MainContainer wallet={this.state.wallet} selectMatchup={this.selectMatchup} matchups={this.state.matchups}setUser={this.setUser}  currentUser={this.state.currentUser}{...routerProps} />} />
           </div>
           :
-          null
+          <div>
+            <Route path='/signup' render={(routerProps) => <SignupForm setUser={this.setUser}{...routerProps} />} />
+            <Route path='/login' render={(routerProps) => <LoginForm setUser={this.setUser}{...routerProps} />} />
+            <Route path='/welcome' render={(routerProps) => <WelcomeContainer setUser= {this.setUser} currentUser={this.state.currentUser}{...routerProps}/>}/>
+          </div>
         }
         </Switch>
       </div>

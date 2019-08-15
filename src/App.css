@@ -22,8 +22,8 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	width: 1360px;
-	/* width: 1840px; */
+	/* width: 1360px; */
+	width: 96vw;
 	height: 150px;
 	font-size: 50px;
 	margin-top: 10px;
@@ -54,21 +54,20 @@ th, td {
 #nav {
 	width: 100%;
 	top: 0;
-	position: sticky;
+	position: fixed;
 	margin: 0 0 3em 0;
 	padding: 0;
 	list-style: none;
 	background-color: maroon;
 }
 #nav ul {
-	position: sticky;
 	top: 0;
 }
 
 #nav li {
 	float: left;
 	display: block;
-	padding: 8px 15px;
+	padding: 3px 15px;
 	text-decoration: none;
 	font-weight: bold;
 	color: aqua;
@@ -88,4 +87,24 @@ th, td {
 }
 .team_column {
 	width: 140px;
+}
+.fas{
+	color:gray;
+	font-size: 22px;
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-top: 4px;
+	padding-bottom: 1px
+}
+.login-form{
+	height: 1000px;
+}
+.main-container{
+	margin-top: 70px;
+}
+.wager-form-container{
+	margin-top: 70px;
+}
+.profile{
+	margin-top: 70px;
 }

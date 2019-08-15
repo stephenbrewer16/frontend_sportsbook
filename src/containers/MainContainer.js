@@ -36,7 +36,7 @@ export default class MainContainer extends Component {
     render() {
         console.log(this.props.currentUser)
         return (
-            <div>
+            <div className="main-container">
                 <ul>
                     <button className="btn_category" onClick={this.baseballClick}>MLB (Baseball)</button> 
                     <div>

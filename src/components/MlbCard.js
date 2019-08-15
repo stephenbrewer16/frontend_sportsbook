@@ -15,16 +15,14 @@ export default class MlbCard extends Component {
                         <th>Game Total Odds</th>
                     </tr>
                         <tr>
-                            {/* <td>{this.props.matchup.away.name}</td> */}
-                            <td>{this.props.matchup.away_team}</td>
+                            <td>{this.props.matchup.away_team_name}</td>
                             <td>{this.props.matchup.away_points_spread}</td>
                             <td>{this.props.matchup.away_spread_odds}</td>
                             <td>{this.props.matchup.over}</td>
                             <td>{this.props.matchup.over_odds}</td>
                         </tr>
                         <tr>
-                            {/* <td>{this.props.matchup.home.name}</td> */}
-                            <td>{this.props.matchup.home_team}</td>
+                            <td>{this.props.matchup.home_team_name}</td>
                             <td>{this.props.matchup.home_points_spread}</td>
                             <td>{this.props.matchup.home_spread_odds}</td>
                             <td>{this.props.matchup.under}</td>
