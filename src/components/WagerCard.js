@@ -15,20 +15,36 @@ componentDidMount() {
 }
 
 
+
 setPayout = () => {
     let newPayout
     if (this.props.wager.odds < 0){
-       newPayout =  this.numberFormat(this.props.wager.wager_amount / (Math.abs(parseFloat(this.props.wager.odds)) / 100))
+       newPayout =  this.props.wager.wager_amount / (Math.abs(parseFloat(this.props.wager.odds)) / 100)
     }else{
-       newPayout =  this.numberFormat(this.props.wager.wager_amount * (parseFloat(this.props.wager.odds) / 100))
+       newPayout =  this.props.wager.wager_amount * (parseFloat(this.props.wager.odds) / 100)
     }
     this.setState({
         payout: newPayout
+    }, () => {
+        if (this.props.wager.status === "Winner"){
+        console.log(this.state.payout)
+        fetch(`http://localhost:3000/users/${this.props.currentUser.id}`, {
+            method: 'PATCH',
+            headers: {
+                "Content-Type": 'application/json',
+                "Accept": 'application/json'
+            },
+            body: JSON.stringify({ 
+                wallet: parseFloat(this.props.wager.wager_amount + this.state.payout),
+                wager_id: this.props.wager.id
+            })
+        })
+            .then(resp => resp.json())
+            .then(response => this.props.addFunds(response))
+    }
     })
-    return newPayout
 }
     render() {
-        console.log(this.state.payout)
         return (
             <div className="matchup_card">
                 <table>

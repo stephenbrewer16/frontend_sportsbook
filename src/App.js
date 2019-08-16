@@ -92,9 +92,8 @@ export default class App extends Component {
     this.setState({
       wallet: parseFloat(user.wallet),
       currentUser: user
-    }, () => {
-        this.props.history.push("/wallet")
-    })
+    }
+    )
   }
   subtractFunds = (user) => {
     this.setState({
