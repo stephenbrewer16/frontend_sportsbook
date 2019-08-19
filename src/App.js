@@ -41,7 +41,11 @@ export default class App extends Component {
               currentUser: response,
             })
             this.setState({
-              wallet: this.state.currentUser.wallet
+              wallet: this.state.currentUser.wallet,
+              mlb: false,
+              nfl: false,
+              nba: false,
+              nhl: false
             })
           }
         })
@@ -79,6 +83,7 @@ export default class App extends Component {
     console.log(this.state.currentUser)
   }
 
+  
   addWager = (newWager) => {
     this.setState({
       wagers: [newWager, ...this.state.wagers]
@@ -125,7 +130,7 @@ export default class App extends Component {
       nhl: !this.state.nhl
     })
   }
-
+  
   render() {
     console.log(this.state.matchups)
     return (
