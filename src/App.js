@@ -50,11 +50,7 @@ export default class App extends Component {
           }
         })
     }
-    // fetch("https://cors-anywhere.herokuapp.com/https://api.sportradar.us/mlb/trial/v6.5/en/games/2019/08/9/schedule.json?api_key=3yezgnsnryvgvepu2m9pbgvb")
-    // .then(resp => resp.json())
-    // .then(baseball => this.setState({
-    //   matchups: [...this.state.matchups, baseball.games]
-    // }))
+
     fetch("http://localhost:3000/matchups")
     .then(resp => resp.json())
     .then(matchup => this.setState({

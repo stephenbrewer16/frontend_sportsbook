@@ -7,7 +7,6 @@ import NhlContainer from './NhlContainer';
 
 export default class MainContainer extends Component {
     render() {
-        console.log(this.props.currentUser)
         return (
             <div className="main-container">
                 <ul>

@@ -46,7 +46,7 @@ setPayout = () => {
 }
     render() {
         return (
-            <div className="matchup_card">
+            <div className="wager_card" style={this.props.wager.status === "Loss" ? { borderColor: "red" } : { borderColor: "chartreuse"}}>
                 <table>
                     <tr>
                         <th>Team</th>

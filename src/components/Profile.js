@@ -9,8 +9,12 @@ export default class Profile extends Component {
         })
     }
     render() {
+        console.log(this.renderWagers())
         return (
             <div className="profile">
+                <h2>{this.props.currentUser.username}</h2>
+                <h3>{this.props.currentUser.email}</h3>
+                <h4>All Wagers:</h4>
                 {this.renderWagers()}
             </div>
         )

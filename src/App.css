@@ -76,16 +76,18 @@ th, td {
 }
 #nav ul {
 	top: 0;
+	
 }
 
 #nav li {
 	float: left;
 	display: block;
-	padding: 3px 15px;
-	text-decoration: none;
-	font-weight: bold;
+	padding: 12px 26px;
 	color: aqua;
-	border-right: 1px solid #ccc;
+	font-size: 22px;
+	
+	
+	/* border-right: 1px solid #ccc; */
 }
 .matchup_container {
 	display: flex;
@@ -101,25 +103,32 @@ th, td {
 	margin-top: 100px;
 	width: 800px;
 }
+.wager_card {
+	justify-content: center;
+	border-style: solid;
+	border-width: 2px;
+	border-color: chartreuse;
+	margin-top: 100px;
+	width: 800px;
+}
 .team_column {
 	width: 140px;
 }
-.fas{
-	font-size: 22px;
-	padding-left: 15px;
-	padding-right: 15px;
-	padding-top: 0px;
-	padding-bottom: 0px
-}
+
 .login-form{
 	height: 1000px;
 }
 .main-container{
-	margin-top: 70px;
+	margin-top: 100px;
 }
 .wager-form-container{
-	margin-top: 70px;
+	margin-top: 100px;
+	margin-bottom: 50px;
 }
 .profile{
-	margin-top: 70px;
+	margin-top: 100px;
+	margin-bottom: 100px;
+}
+.addfunds{
+	margin-top: 100px;
 }

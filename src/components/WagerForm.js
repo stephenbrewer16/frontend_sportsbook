@@ -50,7 +50,7 @@ export default class WagerForm extends Component {
                     && this.props.currentMatchupId.away_points_spread > 0
                     && (this.props.currentMatchupId.away_score - this.props.currentMatchupId.home_score) < (this.props.currentMatchupId.home_points_spread * -1)
                     ? "Winner"
-                    : 'Loser'
+                    : 'Loss'
             })
         })
     }
@@ -93,11 +93,12 @@ export default class WagerForm extends Component {
                     <p>Team: {this.state.team}</p>
                     <label>
                         Select Wager: 
-                        <select name="selected_wager" value={this.state.selected_wager} onChange={this.handleChange}> 
-                            <option>{this.props.currentMatchupId.away_points_spread}</option> 
-                            <option>{this.props.currentMatchupId.home_points_spread}</option>
-                            <option>{this.props.currentMatchupId.over}</option>
-                            <option>{this.props.currentMatchupId.under}</option>
+                        <select name="selected_wager" value={this.state.selected_wager} onChange={this.handleChange}>
+                            <option value="" disabled selected>Please Select a Wager</option> 
+                            <option value={this.props.currentMatchupId.away_points_spread}>{this.props.currentMatchupId.away_team_name} {this.props.currentMatchupId.away_points_spread}</option> 
+                            <option value={this.props.currentMatchupId.home_points_spread}>{this.props.currentMatchupId.home_team_name} {this.props.currentMatchupId.home_points_spread}</option>
+                            <option value={this.props.currentMatchupId.over}>Over: {this.props.currentMatchupId.over}</option>
+                            <option value={this.props.currentMatchupId.under}>Under: {this.props.currentMatchupId.under}</option>
                         </select>
                     </label>
                         <p>Odds: {this.state.odds}</p>
