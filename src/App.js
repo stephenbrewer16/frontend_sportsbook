@@ -17,7 +17,11 @@ export default class App extends Component {
     wagers: [],
     matchups:[],
     currentMatchupId: null,
-    wallet: ''
+    wallet: '',
+    mlb: false,
+    nfl: false,
+    nba: false,
+    nhl: false
   }
 
   componentDidMount = () => {
@@ -101,6 +105,27 @@ export default class App extends Component {
       currentUser: user
     })
   }
+  baseballClick = () => {
+    this.setState({
+      mlb: !this.state.mlb
+    })
+  }
+  footballClick = () => {
+    this.setState({
+      nfl: !this.state.nfl
+    })
+  }
+  basketballClick = () => {
+    this.setState({
+      nba: !this.state.nba
+    })
+  }
+  hockeyClick = () => {
+    this.setState({
+      nhl: !this.state.nhl
+    })
+  }
+
   render() {
     console.log(this.state.matchups)
     return (
@@ -109,12 +134,12 @@ export default class App extends Component {
           {this.state.currentUser
           ?
           <div>
-            <Nav wallet={this.state.wallet} logout={this.logout} currentUser={this.state.currentUser}/>
+            <Nav mlb={this.state.mlb} nfl={this.state.nfl} nba={this.state.nba} nhl={this.state.nhl} wallet={this.state.wallet} logout={this.logout} currentUser={this.state.currentUser}/>
             <Route path='/addfunds' render={(routerProps) => <AddFunds addFunds={this.addFunds} currentUser={this.state.currentUser}{...routerProps}/>}/>
             <Route path='/wallet' render={(routerProps) => <Wallet wallet={this.state.wallet} {...routerProps} currentUser={this.state.currentUser}/>}/>
             <Route path='/profile' render={(routerProps)=> <Profile addFunds={this.addFunds} {...routerProps} matchups={this.state.matchups} wallet={this.state.wallet} currentUser={this.state.currentUser}/>}/>
             <Route path='/wagerform' render={(routerProps) => <WagerForm subtractFunds={this.subtractFunds} wallet={this.state.wallet} currentMatchupId={this.state.currentMatchupId} addWager={this.addWager} currentUser={this.state.currentUser} matchups={this.state.matchups} setUser={this.setUser}{...routerProps} />} />
-            <Route path='/home' render={(routerProps) => <MainContainer wallet={this.state.wallet} selectMatchup={this.selectMatchup} matchups={this.state.matchups}setUser={this.setUser}  currentUser={this.state.currentUser}{...routerProps} />} />
+            <Route path='/home' render={(routerProps) => <MainContainer mlb={this.state.mlb} nfl={this.state.nfl} nba={this.state.nba} nhl={this.state.nhl} baseballClick={this.baseballClick} footballClick={this.footballClick} basketballClick={this.basketballClick} hockeyClick={this.hockeyClick} wallet={this.state.wallet} selectMatchup={this.selectMatchup} matchups={this.state.matchups}setUser={this.setUser}  currentUser={this.state.currentUser}{...routerProps} />} />
           </div>
           :
           <div>

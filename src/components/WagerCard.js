@@ -61,7 +61,7 @@ setPayout = () => {
                         <td>{this.props.wager.selected_wager}</td>
                         <td>{this.props.wager.odds}</td>
                         <td>{this.numberFormat(this.props.wager.wager_amount)}</td>
-                        <td>{this.state.payout}</td>
+                        <td>{this.numberFormat(this.state.payout)}</td>
                         <td>{this.props.wager.status}</td>
                     </tr>
                 </table>

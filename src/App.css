@@ -16,6 +16,14 @@
 	margin: 5px;
 	cursor: pointer;
 }
+.btn-logout {
+	height: 30px;
+	width: 120px;
+	border-radius: 5px;
+	margin: 3px;
+	top: 0;
+	cursor: pointer;
+}
 .btn_category {
 	height: 30px;
 	display: flex;
@@ -35,6 +43,9 @@
 	background-color: aqua;
 }
 .btn_bet:hover{
+	background-color: aqua;
+}
+.btn-logout:hover{
 	background-color: aqua;
 }
 .btn_category:hover{
@@ -80,21 +91,22 @@ th, td {
 	align-items: center;
 }
 .matchup_card {
+	justify-content: center;
 	border-style: solid;
 	border-width: 2px;
 	border-color: chartreuse;
 	margin-top: 100px;
+	width: 800px;
 }
 .team_column {
 	width: 140px;
 }
 .fas{
-	color:gray;
 	font-size: 22px;
 	padding-left: 15px;
 	padding-right: 15px;
-	padding-top: 4px;
-	padding-bottom: 1px
+	padding-top: 0px;
+	padding-bottom: 0px
 }
 .login-form{
 	height: 1000px;
