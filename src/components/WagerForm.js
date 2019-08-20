@@ -58,7 +58,7 @@ export default class WagerForm extends Component {
     handleSubmit = (e) => {
         e.preventDefault()
         if (this.props.wallet >= this.state.wager_amount){ 
-        fetch('http://localhost:3000/wagers', {
+        fetch(`http://localhost:3000/wagers`, {
             method: 'POST',
             headers: {
                 "Content-Type": 'application/json',

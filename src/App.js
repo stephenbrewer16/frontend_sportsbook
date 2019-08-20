@@ -84,8 +84,6 @@ export default class App extends Component {
   addWager = (newWager) => {
     this.setState({
       wagers: [newWager, ...this.state.wagers]
-    }, () => {
-      this.props.history.push("/home")
     })
   }
   selectMatchup = (matchup) => {
@@ -129,16 +127,16 @@ export default class App extends Component {
   }
   
   render() {
-    console.log(this.state.matchups)
+    console.log(this.state.currentUser)
     return (
       <div>
         <Switch>
           {this.state.currentUser
           ?
           <div>
-            <Nav mlb={this.state.mlb} nfl={this.state.nfl} nba={this.state.nba} nhl={this.state.nhl} wallet={this.state.wallet} logout={this.logout} currentUser={this.state.currentUser}/>
+            <Nav history={this.props.history} mlb={this.state.mlb} nfl={this.state.nfl} nba={this.state.nba} nhl={this.state.nhl} wallet={this.state.wallet} logout={this.logout} currentUser={this.state.currentUser}/>
             <Route path='/tutorial' render={(routerProps) => <Tutorial {...routerProps}/>}/>
-            <Route path='/addfunds' render={(routerProps) => <AddFunds addFunds={this.addFunds} currentUser={this.state.currentUser}{...routerProps}/>}/>
+            <Route path='/addfunds'  render={(routerProps) => <AddFunds addFunds={this.addFunds} currentUser={this.state.currentUser}{...routerProps}/>}/>
             <Route path='/wallet' render={(routerProps) => <Wallet wallet={this.state.wallet} {...routerProps} currentUser={this.state.currentUser}/>}/>
             <Route path='/profile' render={(routerProps)=> <Profile addFunds={this.addFunds} {...routerProps} matchups={this.state.matchups} wallet={this.state.wallet} currentUser={this.state.currentUser}/>}/>
             <Route path='/wagerform' render={(routerProps) => <WagerForm subtractFunds={this.subtractFunds} wallet={this.state.wallet} currentMatchupId={this.state.currentMatchupId} addWager={this.addWager} currentUser={this.state.currentUser} matchups={this.state.matchups} setUser={this.setUser}{...routerProps} />} />

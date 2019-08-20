@@ -13,7 +13,7 @@ export default class Nav extends Component {
         return (
             <div id="nav">
                 <ul>
-                    <Link to='/home'><li><i class="fas fa-home"></i></li></Link>
+                    <Link to='/home' ><li><i class="fas fa-home"></i></li></Link>
                     <li>Current Balance: {this.numberFormat(this.props.currentUser.wallet)}</li>
                     <Link to='/wallet'><li><i class="far fa-money-bill-alt"></i> Add Funds</li></Link>
                     <li><a href="#mlb-container"><i className="fas fa-baseball-ball" style={this.props.mlb ? { color: "white" } : { color: "rgb(41, 43, 43)" }}></i></a></li>

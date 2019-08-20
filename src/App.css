@@ -56,7 +56,6 @@ html {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	/* width: 1360px; */
 	width: 96vw;
 	height: 150px;
 	font-size: 50px;
@@ -85,7 +84,7 @@ html {
 }
 
 .btn_category:hover{
-	background-color: maroon;
+	background: linear-gradient(to right, rgb(4, 27, 21), rgb(22, 193, 113));
 }
 table {
   width: 100%
