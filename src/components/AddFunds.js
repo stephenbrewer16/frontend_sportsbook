@@ -6,7 +6,7 @@ export default class AddFunds extends Component {
     }
     handleSubmit = (e) =>{
         e.preventDefault()
-        fetch(`http://localhost:3000/users/${this.props.currentUser.id}`, {
+        fetch(`http://localhost:3000/users/${this.props.currentUser.id}/add_funds`, {
             method: 'PATCH',
             headers: {
                 "Content-Type": 'application/json',
@@ -27,8 +27,9 @@ export default class AddFunds extends Component {
         return (
             <div className="addfunds">
                 <form onSubmit={this.handleSubmit}>
-                    <input name="wallet" value={this.state.wallet} onChange={this.handleChange}></input>
-                    <button type="submit">Submit</button>
+                    <input className="wallet" name="wallet" value={this.state.wallet} onChange={this.handleChange} placeholder="Please enter in $00.00 format"></input>
+                    <br></br>
+                    <button className="btn_money" type="submit">Submit</button>
                 </form>
             </div>
         )

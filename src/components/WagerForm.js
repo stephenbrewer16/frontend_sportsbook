@@ -95,9 +95,9 @@ export default class WagerForm extends Component {
                         Select Wager: 
                         <select name="selected_wager" value={this.state.selected_wager} onChange={this.handleChange}>
                             <option value="" disabled selected>Please Select a Wager</option> 
-                            <option value={this.props.currentMatchupId.away_points_spread}>{this.props.currentMatchupId.away_team_name} {this.props.currentMatchupId.away_points_spread}</option> 
-                            <option value={this.props.currentMatchupId.home_points_spread}>{this.props.currentMatchupId.home_team_name} {this.props.currentMatchupId.home_points_spread}</option>
-                            <option value={this.props.currentMatchupId.over}>Over: {this.props.currentMatchupId.over}</option>
+                            <option value={this.props.currentMatchupId.away_points_spread}>{this.props.currentMatchupId.away_team_name} {this.props.currentMatchupId.away_points_spread > 0.0 ? "+" + this.props.currentMatchupId.away_points_spread : this.props.currentMatchupId.away_points_spread}</option> 
+                            <option value={this.props.currentMatchupId.home_points_spread}>{this.props.currentMatchupId.home_team_name} {this.props.currentMatchupId.home_points_spread > 0.0 ? "+" + this.props.currentMatchupId.home_points_spread : this.props.currentMatchupId.home_points_spread}</option>
+                            <option value={this.props.currentMatchupId.over}>Over: {this.props.currentMatchupId.over > 0.0 ? "+" + this.props.currentMatchupId.over : this.props.currentMatchupId.over}</option>
                             <option value={this.props.currentMatchupId.under}>Under: {this.props.currentMatchupId.under}</option>
                         </select>
                     </label>
@@ -105,36 +105,32 @@ export default class WagerForm extends Component {
                         <input name="wager_amount" value={this.state.wager_amount} onChange={this.handleChange} placeholder="Enter Wager Amount in 00.00 format"></input>
                         <button className="place-wager" type="submit">Submit</button>
                 </form>
-                <table>
-                    <tr>
-                        <th>Team</th>
-                        <th>Spread</th>
-                        <th>Points Spread Odds</th>
-                        <th>Game Total Over/Under Runs</th>
-                        <th>Game Total Odds</th>
-                    </tr>
-                    <tr>
-                        <td>Away: {this.props.currentMatchupId.away_team_name}</td>
-                        <td>{this.props.currentMatchupId.away_points_spread}</td>
-                        <td>{this.props.currentMatchupId.away_spread_odds}</td>
-                        <td>{this.props.currentMatchupId.over}</td>
-                        <td>{this.props.currentMatchupId.over_odds}</td>
-                    </tr>
-                    <tr>
-                        <td>Home: {this.props.currentMatchupId.home_team_name}</td>
-                        <td>{this.props.currentMatchupId.home_points_spread}</td>
-                        <td>{this.props.currentMatchupId.home_spread_odds}</td>
-                        <td>{this.props.currentMatchupId.under}</td>
-                        <td>{this.props.currentMatchupId.under_odds}</td>
-                    </tr>
-                </table>
+                <div className="matchup_card">
+                    <table>
+                        <tr>
+                            <th>Team</th>
+                            <th>Spread</th>
+                            <th>Points Spread Odds</th>
+                            <th>Game Total Over/Under Runs</th>
+                            <th>Game Total Odds</th>
+                        </tr>
+                        <tr>
+                            <td>Away: {this.props.currentMatchupId.away_team_name}</td>
+                            <td>{this.props.currentMatchupId.away_points_spread > 0.0 ? "+" + this.props.currentMatchupId.away_points_spread : this.props.currentMatchupId.away_points_spread}</td>
+                            <td>{this.props.currentMatchupId.away_spread_odds > 0.0 ? "+" + this.props.currentMatchupId.away_spread_odds : this.props.currentMatchupId.away_spread_odds}</td>
+                            <td>{this.props.currentMatchupId.over > 0.0 ? "+" + this.props.currentMatchupId.over : this.props.currentMatchupId.over}</td>
+                            <td>{this.props.currentMatchupId.over_odds > 0.0 ? "+" + this.props.currentMatchupId.over_odds : this.props.currentMatchupId.over_odds}</td>
+                        </tr>
+                        <tr>
+                            <td>Home: {this.props.currentMatchupId.home_team_name}</td>
+                            <td>{this.props.currentMatchupId.home_points_spread > 0.0 ? "+" + this.props.currentMatchupId.home_points_spread : this.props.currentMatchupId.home_points_spread}</td>
+                            <td>{this.props.currentMatchupId.home_spread_odds > 0.0 ? "+" + this.props.currentMatchupId.home_spread_odds : this.props.currentMatchupId.home_spread_odds}</td>
+                            <td>{this.props.currentMatchupId.under > 0.0 ? "+" + this.props.currentMatchupId.under : this.props.currentMatchupId.under}</td>
+                            <td>{this.props.currentMatchupId.under_odds > 0.0 ? "+" + this.props.currentMatchupId.under_odds : this.props.currentMatchupId.under_odds}</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
         )
     }
 }
-// t.string "team"
-// t.float "selected_wager"
-// t.integer "odds"
-// t.float "wager_amount"
-// t.bigint "user_id"
-// t.bigint "matchup_id"

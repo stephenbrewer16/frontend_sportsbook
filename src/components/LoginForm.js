@@ -40,9 +40,10 @@ export default class LoginForm extends Component {
         return (
             <div>
                 <form className="login-form" onSubmit={this.handleSubmit}>
-                    <input name="username" value={this.state.username} onChange={this.handleChange} placeholder="username"></input>
-                    <input name="password" value={this.state.password} type="password" onChange={this.handleChange} placeholder="password"></input>
-                    <button className='login' type='submit'>Submit</button>
+                    <input className="login_box" name="username" value={this.state.username} onChange={this.handleChange} placeholder="username"></input>
+                    <input className="login_box" name="password" value={this.state.password} type="password" onChange={this.handleChange} placeholder="password"></input>
+                    <br></br>
+                    <button className='btn' type='submit'>Submit</button>
                 </form>
             </div>
         )

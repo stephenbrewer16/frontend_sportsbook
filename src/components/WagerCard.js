@@ -49,17 +49,17 @@ setPayout = () => {
             <div className="wager_card" style={this.props.wager.status === "Loss" ? { borderColor: "red" } : { borderColor: "chartreuse"}}>
                 <table>
                     <tr>
-                        <th>Team</th>
-                        <th>Points Spread</th>
-                        <th>Odds</th>
-                        <th>Wager Amount</th>
-                        <th>Payout</th>
-                        <th>Status</th>
+                        <th className="team_column">Team</th>
+                        <th className="team_column">Points Spread</th>
+                        <th className="team_column">Odds</th>
+                        <th className="team_column">Wager Amount</th>
+                        <th className="team_column">Payout</th>
+                        <th className="team_column">Status</th>
                     </tr>
                     <tr>
                         <td>{this.props.wager.team}</td>
-                        <td>{this.props.wager.selected_wager}</td>
-                        <td>{this.props.wager.odds}</td>
+                        <td>{this.props.wager.selected_wager > 0.0 ? "+" + this.props.wager.selected_wager : this.props.wager.selected_wager}</td>
+                        <td>{this.props.wager.odds > 0.0 ? "+" + this.props.wager.odds : this.props.wager.odds}</td>
                         <td>{this.numberFormat(this.props.wager.wager_amount)}</td>
                         <td>{this.numberFormat(this.state.payout)}</td>
                         <td>{this.props.wager.status}</td>

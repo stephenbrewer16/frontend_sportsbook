@@ -10,9 +10,9 @@ export default class Wallet extends Component {
     render() {
         return (
             <div className="addfunds">
-                <h3>Current Balance</h3>
-                <p>{this.numberFormat(this.props.wallet)}</p>
-                <Link to='/addfunds'><button>Add Funds</button></Link>
+                <h1>Current Balance</h1>
+                <h2>{this.numberFormat(this.props.wallet)}</h2>
+                <Link to='/addfunds'><button className="btn_money">Add Funds</button></Link>
             </div>
         )
     }

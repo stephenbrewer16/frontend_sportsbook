@@ -10,6 +10,7 @@ import WagerForm from './components/WagerForm'
 import Wallet from './components/Wallet';
 import Profile from './components/Profile';
 import AddFunds from './components/AddFunds';
+import Tutorial from './components/Tutorial';
 
 export default class App extends Component {
   state = {
@@ -136,6 +137,7 @@ export default class App extends Component {
           ?
           <div>
             <Nav mlb={this.state.mlb} nfl={this.state.nfl} nba={this.state.nba} nhl={this.state.nhl} wallet={this.state.wallet} logout={this.logout} currentUser={this.state.currentUser}/>
+            <Route path='/tutorial' render={(routerProps) => <Tutorial {...routerProps}/>}/>
             <Route path='/addfunds' render={(routerProps) => <AddFunds addFunds={this.addFunds} currentUser={this.state.currentUser}{...routerProps}/>}/>
             <Route path='/wallet' render={(routerProps) => <Wallet wallet={this.state.wallet} {...routerProps} currentUser={this.state.currentUser}/>}/>
             <Route path='/profile' render={(routerProps)=> <Profile addFunds={this.addFunds} {...routerProps} matchups={this.state.matchups} wallet={this.state.wallet} currentUser={this.state.currentUser}/>}/>
