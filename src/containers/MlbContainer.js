@@ -4,7 +4,9 @@ import MlbCard from '../components/MlbCard';
 export default class MlbContainer extends Component {
     renderBaseball = () =>{
        return this.props.matchups.map(matchup => {
-           return <MlbCard wallet={this.props.wallet} key={matchup.id} matchup={matchup} selectMatchup={this.props.selectMatchup}/>
+           if(matchup.sport === "Baseball"){
+               return <MlbCard wallet={this.props.wallet} key={matchup.id} matchup={matchup} selectMatchup={this.props.selectMatchup}/>
+           }
         })
     }
 
