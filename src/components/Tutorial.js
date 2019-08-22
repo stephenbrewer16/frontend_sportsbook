@@ -1,6 +1,12 @@
 import React, { Component } from 'react'
+import Scores from './Scores';
 
 export default class Tutorial extends Component {
+    renderScores = () => {
+       return this.props.matchups.map(matchup => {
+           return <Scores matchup={matchup}/>
+        })
+    }
     render() {
         return (
             <div className="tutorial">
@@ -28,6 +34,8 @@ export default class Tutorial extends Component {
                         <p>A teaser bet is a bit of a parlay bet, which allows players to reduce their risk. A teaser bet offers the opportunity to bet on point spreads or game totals, and then “tease” or adjust the line to give them a better chance of winning. Of course, their chances to win come at a cost? which is reduced odds.</p>
                     </li>
                 </ul>
+                <h2>Yesterday's Final Scores</h2>
+                {this.renderScores()}
             </div>
         )
     }

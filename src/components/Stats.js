@@ -5,12 +5,9 @@ export default class Stats extends Component {
     state = {
         dubs: false,
         els: false,
-        overwins: [],
-        underwins: [],
 
 
     }
-
     triggerDubs = () => {
         this.setState({
             dubs: !this.state.dubs

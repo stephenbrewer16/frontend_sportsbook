@@ -46,7 +46,7 @@ export default class Profile extends Component {
                 <h3>Account Email: {this.props.currentUser.email}</h3>
                 <div>
                     <button className="btn" onClick={this.betStats}>Show Stats</button>
-                    {this.state.stats ? <Stats wagers={this.props.currentUser.wagers} winners={this.state.winners} losses={this.state.losses}/> : null}
+                    {this.state.stats ? <Stats matchups={this.props.matchups} wagers={this.props.currentUser.wagers} winners={this.state.winners} losses={this.state.losses}/> : null}
                 </div>
                 <h4>All Wagers:</h4>
                 {this.renderWagers()}

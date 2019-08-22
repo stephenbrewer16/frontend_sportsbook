@@ -11,7 +11,6 @@ export default class WagerForm extends Component {
     }
 
     handleChange = (e) => {
-        // console.log('first', parseFloat(`${this.state.selected_wager}`) === this.props.currentMatchupId.away_points_spread)
         this.setState({
             [e.target.name]: e.target.value,
         },() =>{
