@@ -63,7 +63,8 @@ export default class App extends Component {
 
   setUser = (response) => {
     this.setState({
-      currentUser: response.user
+      currentUser: response.user,
+      wallet:response.user.wallet
     }, () => {
       localStorage.token = response.token
       this.props.history.push("/home")
@@ -160,7 +161,7 @@ export default class App extends Component {
           :
           <div>
             <Route path='/signup' render={(routerProps) => <SignupForm setUser={this.setUser}{...routerProps} />} />
-            <Route path='/login' render={(routerProps) => <LoginForm setUser={this.setUser}{...routerProps} />} />
+            <Route path='/login' render={(routerProps) => <LoginForm wallet={this.state.wallet}setUser={this.setUser}{...routerProps} />} />
             <Route path='/welcome' render={(routerProps) => <WelcomeContainer setUser= {this.setUser} currentUser={this.state.currentUser}{...routerProps}/>}/>
           </div>
         }
