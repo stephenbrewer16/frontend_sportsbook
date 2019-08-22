@@ -5,7 +5,6 @@ export default class SignupForm extends Component {
         username: '',
         password: '',
         email: '',
-        avatar: '',
         wallet: null
 
     }
@@ -24,7 +23,7 @@ export default class SignupForm extends Component {
                 "Content-Type": 'application/json',
                 "Accept": 'application/json'
             },
-            body: JSON.stringify({ username: this.state.username, password: this.state.password, email: this.state.email, wallet: this.state.wallet, avatar: this.state.avatar })
+            body: JSON.stringify({ username: this.state.username, password: this.state.password, email: this.state.email, wallet: this.state.wallet})
         })
             .then(resp => resp.json())
             .then(response => {
@@ -43,7 +42,6 @@ export default class SignupForm extends Component {
                     <input className="login_box" name="password" value={this.state.password} type="password" onChange={this.handleChange} placeholder="password"></input>
                     <input className="login_box" name="email" value={this.state.email} onChange={this.handleChange} placeholder="email"></input>
                     <input className="login_box" name="wallet" value={this.state.wallet} onChange={this.handleChange} placeholder="wallet"></input>
-                    <input className="login_box" name="avatar" value={this.state.avatar} onChange={this.handleChange} placeholder="avatar"></input>
                     <br></br>
                     <button className='btn' type='submit'>Submit</button>
                 </form>

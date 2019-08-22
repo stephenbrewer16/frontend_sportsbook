@@ -13,6 +13,7 @@ export default class MlbContainer extends Component {
     render() {
         return (
             <div className="matchup_container">
+                <img className="logo-mlb" src={"http://content.sportslogos.net/logos/4/490/full/1986.png"}></img>
                 {this.renderBaseball()}
             </div>
         )

@@ -11,6 +11,7 @@ export default class NflContainer extends Component {
 render() {
     return (
         <div className="matchup_container">
+            <img className="logo-nfl" src={"http://content.sportslogos.net/logos/7/1007/full/4710.gif"}></img>
             {this.renderFootball()}
         </div>
         )

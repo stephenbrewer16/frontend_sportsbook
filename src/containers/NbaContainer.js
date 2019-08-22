@@ -12,6 +12,7 @@ export default class NbaContainer extends Component {
     render() {
         return (
             <div className="matchup_container">
+                <img className="logo-nba" src={"https://theundefeated.com/wp-content/uploads/2017/06/nbalogo.jpg?w=700"}></img>
                 {this.renderBasketball()}
             </div>
         )

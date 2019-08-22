@@ -12,6 +12,7 @@ numberFormat = (value) =>
 
 componentDidMount() {
     this.setPayout()
+    this.props.viewWagers()
 }
 
 
@@ -41,7 +42,7 @@ setPayout = () => {
         })
             .then(resp => resp.json())
             .then(response => this.props.addFunds(response))
-    }
+        }
     })
 }
     render() {

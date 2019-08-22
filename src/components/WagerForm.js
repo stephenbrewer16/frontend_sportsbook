@@ -11,7 +11,7 @@ export default class WagerForm extends Component {
     }
 
     handleChange = (e) => {
-        console.log('first', parseFloat(`${this.state.selected_wager}`) === this.props.currentMatchupId.away_points_spread)
+        // console.log('first', parseFloat(`${this.state.selected_wager}`) === this.props.currentMatchupId.away_points_spread)
         this.setState({
             [e.target.name]: e.target.value,
         },() =>{
@@ -36,19 +36,25 @@ export default class WagerForm extends Component {
                     : ':(',
                 status: parseFloat(`${this.state.selected_wager}`) === this.props.currentMatchupId.away_points_spread 
                     && this.props.currentMatchupId.away_points_spread < 0
-                    && (this.props.currentMatchupId.away_score - this.props.currentMatchupId.home_score) > (this.props.currentMatchupId.away_points_spread * -1)
+                    && (this.props.currentMatchupId.away_score - this.props.currentMatchupId.home_score) > parseFloat(this.props.currentMatchupId.away_points_spread * -1)
                     ? "Winner"
                     : parseFloat(`${this.state.selected_wager}`) === this.props.currentMatchupId.away_points_spread 
                     && this.props.currentMatchupId.away_points_spread > 0
-                    && (this.props.currentMatchupId.home_score - this.props.currentMatchupId.away_score) < (this.props.currentMatchupId.away_points_spread * -1)
+                    && (this.props.currentMatchupId.home_score - this.props.currentMatchupId.away_score) < parseFloat(this.props.currentMatchupId.away_points_spread)
                     ? "Winner"
                     : parseFloat(`${this.state.selected_wager}`) === this.props.currentMatchupId.home_points_spread 
                     && this.props.currentMatchupId.home_points_spread < 0
-                    && (this.props.currentMatchupId.home_score - this.props.currentMatchupId.away_score) > (this.props.currentMatchupId.home_points_spread * -1)
+                    && (this.props.currentMatchupId.home_score - this.props.currentMatchupId.away_score) > parseFloat(this.props.currentMatchupId.home_points_spread * -1)
                     ? "Winner"
-                    : parseFloat(`${this.state.selected_wager}`) === this.props.currentMatchupId.away_points_spread 
-                    && this.props.currentMatchupId.away_points_spread > 0
-                    && (this.props.currentMatchupId.away_score - this.props.currentMatchupId.home_score) < (this.props.currentMatchupId.home_points_spread * -1)
+                    : parseFloat(`${this.state.selected_wager}`) === this.props.currentMatchupId.home_points_spread 
+                    && this.props.currentMatchupId.home_points_spread > 0
+                    && (this.props.currentMatchupId.away_score - this.props.currentMatchupId.home_score) < parseFloat(this.props.currentMatchupId.home_points_spread )
+                    ? "Winner"
+                    : parseFloat(`${this.state.selected_wager}`) === this.props.currentMatchupId.over
+                    && (this.props.currentMatchupId.home_score + this.props.currentMatchupId.away_score) > this.props.currentMatchupId.over
+                    ? "Winner"
+                    : parseFloat(`${this.state.selected_wager}`) === this.props.currentMatchupId.under
+                    && (this.props.currentMatchupId.home_score + this.props.currentMatchupId.away_score) < (this.props.currentMatchupId.under * -1)
                     ? "Winner"
                     : 'Loss'
             })
@@ -84,7 +90,6 @@ export default class WagerForm extends Component {
         }else{
             alert("You do not have enough funds to place this wager.  Please add more to your wallet")
         }
-
     }
     render() {
         return (

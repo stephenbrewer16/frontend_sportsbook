@@ -69,10 +69,22 @@ export default class App extends Component {
       this.props.history.push("/home")
     })
   }
+  logoReset = () => {
+    this.setState({
+      mlb: false,
+      nfl: false,
+      nba: false,
+      nhl: false
+    })
+  }
 
   logout = () => {
     this.setState({
-      currentUser: null
+      currentUser: null,
+      mlb: false,
+      nfl: false,
+      nba: false,
+      nhl: false
     }, () => {
       localStorage.removeItem("token")
       this.props.history.push("/welcome")
@@ -96,13 +108,16 @@ export default class App extends Component {
     this.setState({
       wallet: parseFloat(user.wallet),
       currentUser: user
-    }
-    )
+    }, () => {
+      this.props.history.push("/home")
+    })
   }
   subtractFunds = (user) => {
     this.setState({
       wallet: user.wallet,
       currentUser: user
+    }, () => {
+      this.props.history.push("/home")
     })
   }
   baseballClick = () => {
@@ -134,7 +149,7 @@ export default class App extends Component {
           {this.state.currentUser
           ?
           <div>
-            <Nav history={this.props.history} mlb={this.state.mlb} nfl={this.state.nfl} nba={this.state.nba} nhl={this.state.nhl} wallet={this.state.wallet} logout={this.logout} currentUser={this.state.currentUser}/>
+            <Nav history={this.props.history} logoReset={this.logoReset} mlb={this.state.mlb} nfl={this.state.nfl} nba={this.state.nba} nhl={this.state.nhl} wallet={this.state.wallet} logout={this.logout} currentUser={this.state.currentUser}/>
             <Route path='/tutorial' render={(routerProps) => <Tutorial {...routerProps}/>}/>
             <Route path='/addfunds'  render={(routerProps) => <AddFunds addFunds={this.addFunds} currentUser={this.state.currentUser}{...routerProps}/>}/>
             <Route path='/wallet' render={(routerProps) => <Wallet wallet={this.state.wallet} {...routerProps} currentUser={this.state.currentUser}/>}/>
